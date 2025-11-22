@@ -8,14 +8,13 @@ class UserRegisterSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = User
-        fields = ['id', 'email','first_name', 'last_name', 'password']
+        fields = ['id', 'email', 'first_name', 'last_name', 'password']
 
     def create(self, validated_data):
-
-        # Heere i have to override create to ensurw that the password is hashed
+        # We override create to ensure password is hashed properly
         user = User.objects.create_user(
-            username=validated_data['email'], # We are using the email as username
             email=validated_data['email'],
+            username=validated_data['email'], # Using email as username
             password=validated_data['password'],
             first_name=validated_data.get('first_name', ''),
             last_name=validated_data.get('last_name', '')

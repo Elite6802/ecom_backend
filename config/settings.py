@@ -1,5 +1,4 @@
 from pathlib import Path
-from .pagination import StandardResultsPagination
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -125,19 +124,13 @@ REST_FRAMEWORK = {
     'DEFAULT_AUTHENTICATION_CLASSES': (
         'rest_framework_simplejwt.authentication.JWTAuthentication',
     ),
-    'DEFAULT_PERMISSION_CLASSES': (
-        'rest_framework.permissions.IsAuthenticated',
-    ),
-    'DEFAULT_SCHEMA_CLASS': 'drf_spectacular.openapi.SpectacularAutoSchema',
-    'DJANGO_PAGINATION_CLASS': 'config.pagination.StandardResultsPagination',
+    'DEFAULT_SCHEMA_CLASS': 'drf_spectacular.openapi.AutoSchema',
+    'DEFAULT_PAGINATION_CLASS': 'rest_framework.pagination.PageNumberPagination',
     'PAGE_SIZE': 10,
-    'DEFAULT_FILTER_BACKENDS': (
-        'django_filters.rest_framework.DjangoFilterBackend',
-    ),
 }
 
 SPECTACULAR_SETTINGS = {
-    'TITLE' : 'ProDev E-Commerve API',
-    'DESCRIPTION': 'API for E-commerce backed filtering, sorting, and JWT authentication',
+    'TITLE': 'ProDev E-Commerce API',
+    'DESCRIPTION': 'API for E-commerce backend with filtering, sorting, and JWT auth',
     'VERSION': '1.0.0',
 }
